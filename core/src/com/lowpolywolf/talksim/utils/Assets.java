@@ -34,6 +34,9 @@ public class Assets extends AssetManager {
             public static final String BubbleRight = "bubble-right";
 
             public static final String Waves = "waves";
+
+            public static final String StampGood = "goodStamp";
+            public static final String StampBad = "badStamp";
         }
 
     }

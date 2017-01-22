@@ -1,12 +1,19 @@
 package com.lowpolywolf.talksim.actors;
 
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.lowpolywolf.talksim.Consts;
 import com.lowpolywolf.talksim.G;
 import com.lowpolywolf.talksim.model.Conversation;
 import com.lowpolywolf.talksim.model.Conversations;
+import com.lowpolywolf.talksim.utils.Assets;
 
 /**
  * @author Lukasz Zmudziak, @lukz_dev on 2017-01-21.
@@ -28,6 +35,8 @@ public class ConversationContainer extends Table {
     public float delay = 0;
 
     public CallStates callState;
+
+    public Image stamp;
 
     public ConversationContainer(Array<Conversations.ConversationDef> conversationsPool) {
         this.conversationsPool = conversationsPool;
@@ -104,6 +113,10 @@ public class ConversationContainer extends Table {
 
         switch (newState) {
             case INCOMING_CALL:
+                if(stamp != null) {
+                    stamp.remove();
+                }
+
                 newConversation();
                 this.messageLine.addIncoming();
                 this.delay = Consts.CONVERSATION_INCOMING_DELAY;
@@ -131,7 +144,11 @@ public class ConversationContainer extends Table {
     public void reportAs(boolean good) {
         if(good != conversation.conversationDef.isGood) {
             G.world.getHpBar().hit();
+            stampConversation(false);
+        } else {
+            stampConversation(true);
         }
+
 
         setState(CallStates.CALL_RESULT);
     }
@@ -144,5 +161,38 @@ public class ConversationContainer extends Table {
         float maxTime = conversation.conversationDef.getConversationTime() + Consts.CONVERSATION_INCOMING_DELAY  + Consts.CONVERSATION_FINISHED_DELAY;
 
         return MathUtils.clamp(conversationTime / maxTime, 0, 1);
+    }
+
+    public void stampConversation(final boolean good) {
+        if(good) {
+            stamp = new Image(new TextureRegionDrawable(G.assets.gameRegion(Assets.Atlases.GameRegions.StampGood)));
+        } else {
+            stamp = new Image(new TextureRegionDrawable(G.assets.gameRegion(Assets.Atlases.GameRegions.StampBad)));
+        }
+
+        Vector2 posX = messageLine.localToStageCoordinates(new Vector2(messageLine.getX(Align.center), messageLine.getY(Align.center)));
+        Vector2 posY = localToStageCoordinates(new Vector2(getX(Align.center), getY(Align.center)));
+
+        stamp.setOrigin(Align.center);
+        stamp.setScale(5, 5);
+        stamp.rotateBy(90);
+
+        stamp.setPosition(posX.x, posY.y, Align.center);
+
+        stamp.addAction(Actions.sequence(
+                Actions.parallel(
+                        Actions.scaleTo(1, 1, 0.1f, Interpolation.exp5In),
+                        Actions.rotateTo(0, 0.1f, Interpolation.exp5In)
+                ),
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        G.world.addShake();
+                    }
+                }),
+                Actions.delay(Consts.CONVERSATION_RESULT_DELAY - 0.1f)
+        ));
+
+        this.getStage().addActor(stamp);
     }
 }

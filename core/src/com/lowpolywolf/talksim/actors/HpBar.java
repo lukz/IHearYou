@@ -53,7 +53,5 @@ public class HpBar extends Group {
 
     public void hit() {
         hp -= 0.1;
-
-        G.world.addShake();
     }
 }

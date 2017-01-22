@@ -11,5 +11,5 @@ public class Consts {
     public static float CONVERSATION_FINISHED_DELAY = 5.0f;
     public static float CONVERSATION_INCOMING_DELAY = 5.0f;
 
-    public static float CONVERSATION_RESULT_DELAY = 5.0f;
+    public static float CONVERSATION_RESULT_DELAY = 1.0f;
 }
