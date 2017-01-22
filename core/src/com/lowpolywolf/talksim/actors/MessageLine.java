@@ -1,5 +1,6 @@
 package com.lowpolywolf.talksim.actors;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -87,6 +88,7 @@ public class MessageLine extends Table {
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = MessageActor.reusedFont;
+        labelStyle.fontColor = Color.valueOf("FFCC99");
 
         Label label = new Label("Call ended...", labelStyle) {
 
@@ -119,6 +121,7 @@ public class MessageLine extends Table {
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = MessageActor.reusedFont;
+        labelStyle.fontColor = Color.valueOf("FFCC99");
 
         Label label = new Label("Initializing call...", labelStyle) {
 

@@ -26,6 +26,8 @@ public class GameWorld {
     private HpBar hpBar;
     private Table messageLinesTable;
 
+    private int day = 1;
+
     private float shakeTime = 0;
 
     public GameWorld() {
@@ -68,7 +70,6 @@ public class GameWorld {
 
         // Reset camera pos
         gameStage.getCamera().position.set(gameStage.getCamera().viewportWidth / 2, gameStage.getCamera().viewportHeight / 2, 0);
-
 
         // Poorman's screenshake!
         if(shakeTime > 0) {

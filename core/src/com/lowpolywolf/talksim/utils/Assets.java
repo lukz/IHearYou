@@ -42,6 +42,10 @@ public class Assets extends AssetManager {
 
             public static final String StampGood = "goodStamp";
             public static final String StampBad = "badStamp";
+
+            public static final String Card1 = "card1";
+            public static final String Card2 = "card2";
+            public static final String Card3 = "card3";
         }
 
     }
