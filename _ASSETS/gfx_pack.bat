@@ -1,0 +1,1 @@
+java -cp texturepacker.jar com.badlogic.gdx.tools.texturepacker.TexturePacker gfx/game gfx_packed gfx_game.atlas
