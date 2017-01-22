@@ -122,19 +122,23 @@ public class ConversationContainer extends Table {
                 this.delay = Consts.CONVERSATION_INCOMING_DELAY;
 
                 this.reportButton.disable(true);
+                this.messageLine.getWaves().setState(Waves.WaveStates.INIT);
                 break;
 
             case CALL_RUNNING:
+                this.messageLine.getWaves().setState(Waves.WaveStates.TALK);
                 this.reportButton.disable(false);
                 break;
 
             case CALL_FINISH:
+                this.messageLine.getWaves().setState(Waves.WaveStates.END);
                 this.messageLine.addFinished();
                 this.delay = Consts.CONVERSATION_FINISHED_DELAY;
                 break;
 
             case CALL_RESULT:
                 this.reportButton.disable(true);
+                this.messageLine.getWaves().setState(Waves.WaveStates.IDLE);
                 this.delay = Consts.CONVERSATION_RESULT_DELAY;
 
                 break;

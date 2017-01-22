@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 
 public class Assets extends AssetManager {
 
@@ -34,6 +35,10 @@ public class Assets extends AssetManager {
             public static final String BubbleRight = "bubble-right";
 
             public static final String Waves = "waves";
+            public static final String WavesIdle = "wavesIdle";
+            public static final String WavesInit = "wavesInit";
+            public static final String WavesTalk = "wavesTalk";
+            public static final String WavesEnd = "wavesEnd";
 
             public static final String StampGood = "goodStamp";
             public static final String StampBad = "badStamp";
@@ -62,6 +67,10 @@ public class Assets extends AssetManager {
 
     public TextureRegion gameRegion(String name) {
         return gameAtlas().findRegion(name);
+    }
+
+    public Array<TextureAtlas.AtlasRegion> gameRegions(String name) {
+        return gameAtlas().findRegions(name);
     }
 
     public NinePatch gamePatch(String name) {

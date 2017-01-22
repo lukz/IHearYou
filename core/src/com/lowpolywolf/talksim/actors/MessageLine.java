@@ -1,5 +1,8 @@
 package com.lowpolywolf.talksim.actors;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
@@ -23,6 +26,7 @@ public class MessageLine extends Table {
     private ScrollPane messagesTableScroll;
 
     private ProgressBar progressBar;
+    private Waves waves;
 
     public MessageLine() {
         this.defaults().align(Align.top);
@@ -39,7 +43,9 @@ public class MessageLine extends Table {
         this.messagesTableScroll = new ScrollPane(this.messagesTable);
         this.messagesTableScroll.setOverscroll(false, false);
 
-        this.add(new Image(new TextureRegionDrawable(G.assets.gameRegion(Assets.Atlases.GameRegions.Waves)))).padTop(2).row();
+        this.waves = new Waves();
+        this.add(waves).padTop(2).row();
+
         this.add(progressBar).row();
         this.add(messagesTableScroll).size(244 - 4, 450 - 89).padLeft(2).padRight(2).expand().fill().row();
     }
@@ -154,5 +160,9 @@ public class MessageLine extends Table {
 
     public MessageActor getCurrentMessage() {
         return currentMessage;
+    }
+
+    public Waves getWaves() {
+        return waves;
     }
 }
