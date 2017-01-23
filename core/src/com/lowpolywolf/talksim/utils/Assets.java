@@ -56,6 +56,7 @@ public class Assets extends AssetManager {
             public static final String WhitePix = "whitePix";
 
             public static final String End = "end";
+            public static final String Win = "win";
         }
 
     }

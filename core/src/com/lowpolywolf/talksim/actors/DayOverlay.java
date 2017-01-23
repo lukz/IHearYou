@@ -3,6 +3,7 @@ package com.lowpolywolf.talksim.actors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -19,6 +20,8 @@ public class DayOverlay extends Table {
     public DayOverlay(int day) {
         setFillParent(true);
         align(Align.top);
+
+        setTouchable(Touchable.enabled);
 
         SpriteDrawable spriteDrawable = new SpriteDrawable(new Sprite(G.assets.gameRegion(Assets.Atlases.GameRegions.WhitePix)));
         spriteDrawable.getSprite().setColor(Color.BLACK);

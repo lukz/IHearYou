@@ -1,6 +1,7 @@
 package com.lowpolywolf.talksim.model;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -111,6 +112,7 @@ public class GameWorld {
 
         if(hpBar.getHp() <= 0 && deadOverlay == null) {
             deadOverlay = new Image(G.assets.gameRegion(Assets.Atlases.GameRegions.End));
+            deadOverlay.setTouchable(Touchable.enabled);
             gameStage.addActor(deadOverlay);
             gameOver();
         }
@@ -120,9 +122,7 @@ public class GameWorld {
                 deadOverlay.remove();
                 deadOverlay = null;
 
-                day = 1;
-                getHpBar().setHp(1);
-                setDay();
+                restart();
             }
         }
 
@@ -162,7 +162,7 @@ public class GameWorld {
         messageLinesTable.clear();
 
         if(day > 3) {
-
+            win();
             return;
         }
 
@@ -171,11 +171,35 @@ public class GameWorld {
     }
 
     public void gameOver() {
-        day++;
-
         conversationContainers.clear();
         messageLinesTable.clear();
     }
+
+    public void restart() {
+        conversationContainers.clear();
+        messageLinesTable.clear();
+
+        day = 1;
+        getHpBar().setHp(1);
+        setDay();
+        setState(GameStates.SHOW_DAY);
+    }
+
+    public void win() {
+        Gdx.input.setInputProcessor(null);
+
+        Image bg = new Image(G.assets.gameRegion(Assets.Atlases.GameRegions.WhitePix));
+        bg.setColor(Color.BLACK);
+        bg.setSize(gameStage.getWidth(), gameStage.getHeight());
+        bg.setPosition(gameStage.getWidth() / 2, gameStage.getHeight() / 2, Align.center);
+        gameStage.addActor(bg);
+
+        Image winOverlay = new Image(G.assets.gameRegion(Assets.Atlases.GameRegions.Win));
+        winOverlay.setTouchable(Touchable.enabled);
+        winOverlay.setPosition(gameStage.getWidth() / 2, gameStage.getHeight() / 2, Align.center);
+        gameStage.addActor(winOverlay);
+    }
+
 
     public void setDay() {
         Array<Conversations.ConversationDef> levelPool = Conversations.createPoolForLevel(day, 2, 2);
