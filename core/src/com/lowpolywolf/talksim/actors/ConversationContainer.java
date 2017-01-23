@@ -29,7 +29,7 @@ public class ConversationContainer extends Table {
     private float conversationTime = 0;
 
     public enum CallStates {
-        INCOMING_CALL, CALL_RUNNING, CALL_FINISH, CALL_RESULT
+        IDLE, INCOMING_CALL, CALL_RUNNING, CALL_FINISH, CALL_RESULT, NO_MORE
     }
 
     public float delay = 0;
@@ -47,7 +47,7 @@ public class ConversationContainer extends Table {
         this.add(messageLine).size(244, 450).row();
         this.add(reportButton).padTop(-45);
 
-        setState(CallStates.INCOMING_CALL);
+        setState(CallStates.IDLE);
     }
 
     @Override
@@ -88,14 +88,22 @@ public class ConversationContainer extends Table {
                 delay -= delta;
                 messageLine.updateScroll();
 
-                if(delay < 0 && isThereNextConversation()) {
-                    setState(CallStates.INCOMING_CALL);
+                if(delay < 0) {
+
+                    if(isThereNextConversation()) {
+                        setState(CallStates.INCOMING_CALL);
+                    } else {
+                        setState(CallStates.NO_MORE);
+                    }
                 }
 
                 break;
         }
 
-        messageLine.getProgressBar().setProgress(getProgress());
+
+        if(callState != CallStates.IDLE) {
+            messageLine.getProgressBar().setProgress(getProgress());
+        }
     }
 
     private void newConversation() {
@@ -198,5 +206,18 @@ public class ConversationContainer extends Table {
         ));
 
         this.getStage().addActor(stamp);
+    }
+
+    public CallStates getCallState() {
+        return callState;
+    }
+
+    @Override
+    public boolean remove() {
+        if(stamp != null) {
+            stamp.remove();
+        }
+
+        return super.remove();
     }
 }

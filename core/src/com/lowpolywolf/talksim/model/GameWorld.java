@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.lowpolywolf.talksim.G;
 import com.lowpolywolf.talksim.actors.ConversationContainer;
+import com.lowpolywolf.talksim.actors.DayOverlay;
 import com.lowpolywolf.talksim.actors.HpBar;
 import com.lowpolywolf.talksim.utils.Assets;
 
@@ -25,10 +26,20 @@ public class GameWorld {
     // Actors
     private HpBar hpBar;
     private Table messageLinesTable;
+    private DayOverlay dayOverlay;
+    private Image deadOverlay;
 
     private int day = 1;
 
     private float shakeTime = 0;
+
+    public enum GameStates {
+        SHOW_DAY, SHOW_CARD, GAME_RUNNING, GAME_OVER
+    }
+
+    private Array<ConversationContainer> conversationContainers = new Array<ConversationContainer>();
+
+    private GameStates state;
 
     public GameWorld() {
         this.gameStage = new Stage(new ExtendViewport(G.TARGET_WIDTH, G.TARGET_HEIGHT));
@@ -37,13 +48,6 @@ public class GameWorld {
 
         this.messageLinesTable = new Table();
         this.messageLinesTable.defaults().space(6);
-
-        Array<Conversations.ConversationDef> levelPool = Conversations.createPoolForLevel(1, 2, 2);
-
-        this.messageLinesTable.add(new ConversationContainer(levelPool));
-        this.messageLinesTable.add(new ConversationContainer(levelPool));
-        this.messageLinesTable.add(new ConversationContainer(levelPool));
-        this.messageLinesTable.pack();
         this.messageLinesTable.setPosition(34, 0);
         this.gameStage.addActor(messageLinesTable);
 
@@ -62,6 +66,9 @@ public class GameWorld {
             this.gameStage.setDebugAll(true);
         }
 
+        setDay();
+        setState(GameStates.SHOW_DAY);
+
         Gdx.input.setInputProcessor(this.gameStage);
     }
 
@@ -77,6 +84,111 @@ public class GameWorld {
             gameStage.getCamera().position.x += MathUtils.random(-15f, 15f);
             gameStage.getCamera().position.y += MathUtils.random(-15f, 15f);
         }
+
+
+        // Start
+        if(dayOverlay.getStage() == null) {
+            for (ConversationContainer conversationContainer : conversationContainers) {
+                if(conversationContainer.getCallState() == ConversationContainer.CallStates.IDLE) {
+                    conversationContainer.setState(ConversationContainer.CallStates.INCOMING_CALL);
+                }
+            }
+        }
+
+        // Finish
+        if(conversationContainers.size > 0) {
+            boolean finished = true;
+            for (ConversationContainer conversationContainer : conversationContainers) {
+                if(conversationContainer.getCallState() != ConversationContainer.CallStates.NO_MORE) {
+                    finished = false;
+                }
+            }
+
+            if(finished) {
+                finish();
+            }
+        }
+
+        if(hpBar.getHp() <= 0 && deadOverlay == null) {
+            deadOverlay = new Image(G.assets.gameRegion(Assets.Atlases.GameRegions.End));
+            gameStage.addActor(deadOverlay);
+            gameOver();
+        }
+
+        if(deadOverlay != null) {
+            if(Gdx.input.justTouched()) {
+                deadOverlay.remove();
+                deadOverlay = null;
+
+                day = 1;
+                getHpBar().setHp(1);
+                setDay();
+            }
+        }
+
+        switch(state) {
+            case SHOW_DAY:
+                break;
+            case SHOW_CARD:
+                break;
+            case GAME_RUNNING:
+                break;
+            case GAME_OVER:
+                break;
+        }
+    }
+
+    public void setState(GameStates state) {
+        this.state = state;
+
+        switch(state) {
+            case SHOW_DAY:
+                dayOverlay = new DayOverlay(day);
+                gameStage.addActor(dayOverlay);
+                break;
+            case SHOW_CARD:
+                break;
+            case GAME_RUNNING:
+                break;
+            case GAME_OVER:
+                break;
+        }
+    }
+
+    public void finish() {
+        day++;
+
+        conversationContainers.clear();
+        messageLinesTable.clear();
+
+        if(day > 3) {
+
+            return;
+        }
+
+        setDay();
+        setState(GameStates.SHOW_DAY);
+    }
+
+    public void gameOver() {
+        day++;
+
+        conversationContainers.clear();
+        messageLinesTable.clear();
+    }
+
+    public void setDay() {
+        Array<Conversations.ConversationDef> levelPool = Conversations.createPoolForLevel(day, 2, 2);
+
+        for (int i = 0; i < day; i++) {
+            ConversationContainer container = new ConversationContainer(levelPool);
+
+            this.messageLinesTable.add(container);
+            this.conversationContainers.add(container);
+        }
+
+
+        this.messageLinesTable.pack();
     }
 
     public void draw() {

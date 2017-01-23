@@ -52,6 +52,14 @@ public class HpBar extends Group {
     }
 
     public void hit() {
-        hp -= 0.1;
+        hp -= 1 / 3f;
+    }
+
+    public float getHp() {
+        return hp;
+    }
+
+    public void setHp(float hp) {
+        this.hp = hp;
     }
 }

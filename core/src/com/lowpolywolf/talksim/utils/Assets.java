@@ -1,6 +1,7 @@
 package com.lowpolywolf.talksim.utils;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -46,13 +47,18 @@ public class Assets extends AssetManager {
             public static final String Card1 = "card1";
             public static final String Card2 = "card2";
             public static final String Card3 = "card3";
+
+            public static final String Day1 = "day1";
+            public static final String Day2 = "day2";
+            public static final String Day3 = "day3";
+
+            public static final String WhitePix = "whitePix";
+
+            public static final String End = "end";
         }
 
     }
-
-    public static class Sounds {
-//        public static final String Coin = "sounds/coin2.wav";
-    }
+        public static final String Music = "music.mp3";
 
     public Assets() {
         Texture.setAssetManager(this);
@@ -63,6 +69,7 @@ public class Assets extends AssetManager {
     public void enqueueAssets() {
         // Textures atlases
         load(Atlases.Game, TextureAtlas.class);
+        load(Music, Music.class);
     }
 
     public TextureAtlas gameAtlas() {
