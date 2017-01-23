@@ -6,21 +6,21 @@ filter: Linear,Linear
 repeat: xy
 badStamp
   rotate: false
-  xy: 902, 1008
+  xy: 904, 1008
   size: 295, 390
   orig: 295, 390
   offset: 0, 0
   index: -1
 bg
   rotate: false
-  xy: 0, 844
-  size: 900, 600
-  orig: 900, 600
+  xy: 0, 1446
+  size: 1100, 600
+  orig: 1100, 600
   offset: 0, 0
   index: -1
 bubble-center
   rotate: false
-  xy: 1724, 1427
+  xy: 767, 763
   size: 20, 17
   split: 2, 4, 2, 2
   pad: 5, 5, 5, 5
@@ -38,7 +38,7 @@ bubble-left
   index: -1
 bubble-right
   rotate: false
-  xy: 2008, 2023
+  xy: 838, 819
   size: 24, 23
   split: 2, 14, 14, 2
   pad: 5, 15, 5, 5
@@ -47,35 +47,35 @@ bubble-right
   index: -1
 card1
   rotate: false
-  xy: 1806, 1746
+  xy: 0, 28
   size: 200, 300
   orig: 200, 300
   offset: 0, 0
   index: -1
 card2
   rotate: false
-  xy: 0, 28
+  xy: 565, 480
   size: 200, 300
   orig: 200, 300
   offset: 0, 0
   index: -1
 card3
   rotate: false
-  xy: 565, 480
+  xy: 1603, 1098
   size: 200, 300
   orig: 200, 300
   offset: 0, 0
   index: -1
 day1
   rotate: false
-  xy: 1199, 1198
+  xy: 1201, 1198
   size: 400, 200
   orig: 400, 200
   offset: 0, 0
   index: -1
 day2
   rotate: false
-  xy: 1199, 996
+  xy: 1201, 996
   size: 400, 200
   orig: 400, 200
   offset: 0, 0
@@ -89,7 +89,7 @@ day3
   index: -1
 end
   rotate: false
-  xy: 904, 1446
+  xy: 1102, 1446
   size: 900, 600
   orig: 900, 600
   offset: 0, 0
@@ -110,7 +110,7 @@ hpBg
   index: -1
 hpFill
   rotate: false
-  xy: 902, 1400
+  xy: 904, 1400
   size: 820, 44
   orig: 820, 44
   offset: 0, 0
@@ -145,84 +145,56 @@ progressFill
   index: -1
 reportButtonDisabled
   rotate: false
-  xy: 902, 906
+  xy: 904, 906
   size: 200, 100
   orig: 200, 100
   offset: 0, 0
   index: -1
 reportButtonDown
   rotate: false
-  xy: 1806, 1644
+  xy: 1603, 996
   size: 200, 100
   orig: 200, 100
   offset: 0, 0
   index: -1
 reportButtonUp
   rotate: false
-  xy: 1806, 1542
+  xy: 904, 804
   size: 200, 100
   orig: 200, 100
   offset: 0, 0
   index: -1
 topOverlay
   rotate: false
-  xy: 0, 1446
+  xy: 0, 844
   size: 902, 600
   orig: 902, 600
   offset: 0, 0
   index: -1
 waves
   rotate: false
-  xy: 444, 175
+  xy: 1805, 1364
   size: 232, 36
   orig: 232, 36
   offset: 0, 0
   index: -1
 wavesEnd
   rotate: false
-  xy: 1806, 1498
+  xy: 1726, 1402
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 1
 wavesInit
   rotate: false
-  xy: 1806, 1498
+  xy: 1726, 1402
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 3
 wavesTalk
   rotate: false
-  xy: 1806, 1498
-  size: 240, 42
-  orig: 240, 42
-  offset: 0, 0
-  index: 1
-wavesEnd
-  rotate: false
-  xy: 1806, 1454
-  size: 240, 42
-  orig: 240, 42
-  offset: 0, 0
-  index: 2
-wavesInit
-  rotate: false
-  xy: 1806, 1454
-  size: 240, 42
-  orig: 240, 42
-  offset: 0, 0
-  index: 2
-wavesEnd
-  rotate: false
-  xy: 1806, 1410
-  size: 240, 42
-  orig: 240, 42
-  offset: 0, 0
-  index: 3
-wavesInit
-  rotate: false
-  xy: 1806, 1410
+  xy: 1726, 1402
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
@@ -230,69 +202,97 @@ wavesInit
 wavesEnd
   rotate: false
   xy: 565, 436
+  size: 240, 42
+  orig: 240, 42
+  offset: 0, 0
+  index: 2
+wavesInit
+  rotate: false
+  xy: 565, 436
+  size: 240, 42
+  orig: 240, 42
+  offset: 0, 0
+  index: 2
+wavesEnd
+  rotate: false
+  xy: 202, 169
+  size: 240, 42
+  orig: 240, 42
+  offset: 0, 0
+  index: 3
+wavesInit
+  rotate: false
+  xy: 202, 169
+  size: 240, 42
+  orig: 240, 42
+  offset: 0, 0
+  index: 1
+wavesEnd
+  rotate: false
+  xy: 202, 125
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 4
 wavesIdle
   rotate: false
-  xy: 565, 436
+  xy: 202, 125
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: -1
 wavesInit
   rotate: false
-  xy: 565, 436
+  xy: 202, 125
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 0
 wavesTalk
   rotate: false
-  xy: 902, 862
+  xy: 202, 81
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 2
 wavesTalk
   rotate: false
-  xy: 902, 818
+  xy: 202, 37
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 3
 wavesTalk
   rotate: false
-  xy: 202, 169
+  xy: 444, 169
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 4
 wavesTalk
   rotate: false
-  xy: 202, 125
+  xy: 444, 125
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 5
 wavesTalk
   rotate: false
-  xy: 202, 81
+  xy: 444, 81
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 6
 wavesTalk
   rotate: false
-  xy: 202, 37
+  xy: 444, 37
   size: 240, 42
   orig: 240, 42
   offset: 0, 0
   index: 7
 whitePix
   rotate: false
-  xy: 1601, 1348
+  xy: 1106, 956
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
