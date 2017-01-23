@@ -3,6 +3,7 @@ package com.lowpolywolf.talksim.utils;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -58,7 +59,11 @@ public class Assets extends AssetManager {
         }
 
     }
-        public static final String Music = "music.mp3";
+
+    public static final String Music = "music.mp3";
+
+
+    public static final String FontConsolas = "fonts/consolas.fnt";
 
     public Assets() {
         Texture.setAssetManager(this);
@@ -69,11 +74,18 @@ public class Assets extends AssetManager {
     public void enqueueAssets() {
         // Textures atlases
         load(Atlases.Game, TextureAtlas.class);
+
         load(Music, Music.class);
+
+        load(FontConsolas, BitmapFont.class);
     }
 
     public TextureAtlas gameAtlas() {
         return get(Atlases.Game, TextureAtlas.class);
+    }
+
+    public BitmapFont font(String name) {
+        return get(name, BitmapFont.class);
     }
 
     public TextureRegion gameRegion(String name) {

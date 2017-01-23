@@ -26,12 +26,6 @@ public class MessageActor extends Table {
 
     public Label label;
 
-    public static BitmapFont reusedFont = new BitmapFont();
-
-    static {
-        reusedFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-    }
-
     public MessageActor(String message, boolean isLeft) {
         this.message = message;
 
@@ -44,7 +38,7 @@ public class MessageActor extends Table {
         }
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = reusedFont;
+        labelStyle.font = G.assets.font(Assets.FontConsolas);
         labelStyle.fontColor = Color.BLACK  ;
 
         label = new Label("", labelStyle);

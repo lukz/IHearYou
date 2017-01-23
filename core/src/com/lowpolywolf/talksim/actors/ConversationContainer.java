@@ -45,7 +45,7 @@ public class ConversationContainer extends Table {
         this.reportButton = new ReportButton(this);
 
         this.add(messageLine).size(244, 450).row();
-        this.add(reportButton).padTop(-45);
+        this.add(reportButton).padTop(-40).padBottom(-5);
 
         setState(CallStates.IDLE);
     }

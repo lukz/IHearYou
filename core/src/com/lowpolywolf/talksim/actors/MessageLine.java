@@ -87,7 +87,7 @@ public class MessageLine extends Table {
         incomingTable.background(new NinePatchDrawable(G.assets.gamePatch(Assets.Atlases.GameRegions.BubbleCenter)));
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = MessageActor.reusedFont;
+        labelStyle.font = G.assets.font(Assets.FontConsolas);
         labelStyle.fontColor = Color.valueOf("FFCC99");
 
         Label label = new Label("Call ended...", labelStyle) {
@@ -120,7 +120,7 @@ public class MessageLine extends Table {
         incomingTable.background(new NinePatchDrawable(G.assets.gamePatch(Assets.Atlases.GameRegions.BubbleCenter)));
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = MessageActor.reusedFont;
+        labelStyle.font = G.assets.font(Assets.FontConsolas);
         labelStyle.fontColor = Color.valueOf("FFCC99");
 
         Label label = new Label("Initializing call...", labelStyle) {
